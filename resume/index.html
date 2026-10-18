@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume — Ishan Makkar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-parchment: #F4EAD6;
+      --bg-cloud: #FFFDF6;
+      --ink-forest: #274A30;
+      --ink-muted: #4C5B46;
+      --ink-rust: #85492A;
+      --ink-moss: #4D7526;
+      --accent-lime: #A8D84F;
+      --border-ink: rgba(82, 72, 58, 0.42);
+    }
+    body {
+      background-color: var(--bg-parchment);
+      font-family: 'IBM Plex Mono', monospace;
+      color: var(--ink-forest);
+    }
+    .font-vt323 { font-family: 'VT323', monospace; }
+    .font-inter { font-family: 'Inter', sans-serif; }
+    .hairline { border: 0.5px solid var(--border-ink); }
+    .keycap-download {
+      background: linear-gradient(180deg, #FDF9F0 0%, #ECDFC2 100%);
+      border-radius: 14px 14px 0px 0px;
+      box-shadow: inset 0 2px 0 0 rgba(255,255,255,0.8), 0 4px 0 0 rgba(82, 72, 58, 0.15);
+      height: 44px;
+      transition: all 0.12s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .keycap-download:hover {
+      transform: translateY(2px);
+      color: var(--ink-rust);
+    }
+    .glass-btn {
+      background: rgba(0,0,0,0.35);
+      color: var(--accent-lime);
+      border-radius: 6px;
+      height: 33px;
+      transition: background 0.2s ease;
+      backdrop-filter: blur(4px);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .glass-btn:hover { background: rgba(0,0,0,0.45); }
+  </style>
+</head>
+<body>
+  <div class="min-h-screen relative overflow-x-hidden">
+    <header class="h-[90vh] relative flex flex-col justify-end px-24 pb-24" style="background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.4) 0%, rgba(244, 234, 214, 0) 60%, var(--bg-parchment) 100%), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center bottom; border-bottom: 2px solid var(--ink-moss);">
+      <div class="max-w-5xl w-full">
+        <a href="/" class="inline-block mb-12 font-vt323 text-xs uppercase tracking-widest text-white/70 hover:text-white transition-colors">← Back to Portfolio</a>
+        <h1 class="font-vt323 text-[96px] leading-none mb-4 tracking-tight text-white" style="text-shadow: 0 2px 10px rgba(0,0,0,0.3);">Resume</h1>
+        <p class="text-xl font-vt323 tracking-wide text-white/90 mb-12 uppercase bg-black/20 inline-block px-3 py-1 backdrop-blur-sm">Ishan Makkar · SDE · Data Engineering · Frontend</p>
+      </div>
+    </header>
+
+    <main class="max-w-[1024px] mx-auto px-6 py-24">
+      <section class="border-b border-ink-muted/20 pb-16">
+        <h2 class="font-vt323 text-[64px] mb-8">Curriculum Vitae</h2>
+        <p class="max-w-2xl text-lg leading-relaxed opacity-80 mb-12">
+          Download my full resume below. It covers education (Chitkara University, B.E. CSE, CGPA 9.47/10), technical skills across Data Engineering / Cloud / Web / DevOps, projects (WinBatterySaver, BatteryIQ, dc-mcp, RetailSync, Olympic Analytics, ZeroTrust CI/CD, notflix), and certifications.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-6 items-center">
+          <a href="https://github.com/iishanmakkar/resume/blob/main/Ishan_Makkar_Resume%20(7).pdf" target="_blank" class="keycap-download px-10 font-vt323 text-lg">
+            <iconify-icon icon="lucide:file-text" class="ml-2"></iconify-icon> VIEW RESUME ON GITHUB
+          </a>
+          <a href="https://github.com/iishanmakkar/resume/raw/main/Ishan_Makkar_Resume%20(7).pdf" download class="glass-btn px-6 font-vt323 text-sm">
+            <iconify-icon icon="lucide:download"></iconify-icon> DOWNLOAD PDF
+          </a>
+        </div>
+
+        <div class="mt-16 border-t border-ink-muted/20 pt-8">
+          <p class="text-xs font-inter uppercase tracking-wider opacity-40">Built with the Pixel Atelier design system · parchment + VT323 + IBM Plex Mono</p>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
