@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ishan Makkar | Software Engineer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    @view-transition { navigation: auto; }
+    
+    :root {
+      --bg-parchment: #F4EAD6;
+      --bg-cloud: #FFFDF6;
+      --ink-forest: #274A30;
+      --ink-muted: #4C5B46;
+      --ink-rust: #85492A;
+      --ink-moss: #4D7526;
+      --accent-lime: #A8D84F;
+      --border-ink: rgba(82, 72, 58, 0.42);
+    }
+
+    body {
+      background-color: var(--bg-parchment);
+      font-family: 'IBM Plex Mono', monospace;
+      color: var(--ink-forest);
+    }
+
+    .font-vt323 { font-family: 'VT323', monospace; }
+    .font-inter { font-family: 'Inter', sans-serif; }
+    
+    .keycap-launch {
+      background: linear-gradient(180deg, #FDF9F0 0%, #ECDFC2 100%);
+      border-radius: 14px 14px 0px 0px;
+      box-shadow: inset 0 2px 0 0 rgba(255,255,255,0.8), 0 4px 0 0 rgba(82, 72, 58, 0.15);
+      height: 41px;
+      transition: all 0.12s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .keycap-launch:hover {
+      transform: translateY(2px);
+      box-shadow: inset 0 2px 0 0 rgba(255,255,255,0.8), 0 2px 0 0 rgba(82, 72, 58, 0.15);
+      color: var(--ink-rust);
+    }
+
+    .keycap-source {
+      background: linear-gradient(180deg, #FFFDF6 0%, #F4EAD6 100%);
+      border-radius: 14px 14px 0px 0px;
+      box-shadow: inset 0 2px 0 0 rgba(255,255,255,0.8), 0 4px 0 0 rgba(82, 72, 58, 0.15);
+      height: 44px;
+      transition: all 0.12s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .keycap-source:hover {
+      transform: translateY(2px);
+      box-shadow: inset 0 2px 0 0 rgba(255,255,255,0.8), 0 2px 0 0 rgba(82, 72, 58, 0.15);
+      color: var(--ink-rust);
+    }
+
+    .hairline { border: 0.5px solid var(--border-ink); }
+    
+    .dot-rail {
+      position: fixed;
+      right: 48px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 50;
+    }
+
+    .glass-btn {
+      background: rgba(0,0,0,0.45);
+      color: var(--accent-lime);
+      border-radius: 6px;
+      height: 33px;
+      transition: background 0.2s ease;
+      backdrop-filter: blur(4px);
+    }
+    .glass-btn:hover { background: rgba(0,0,0,0.6); }
+
+    .hero-frame {
+      background-image: 
+        linear-gradient(to bottom, rgba(15, 23, 42, 0.4) 0%, rgba(244, 234, 214, 0) 60%, var(--bg-parchment) 100%),
+        url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center bottom;
+      border-bottom: 2px solid var(--ink-moss);
+    }
+
+    .footer-frame {
+      background-image: 
+        linear-gradient(to top, rgba(15, 23, 42, 0.4) 0%, rgba(244, 234, 214, 0) 60%, var(--bg-parchment) 100%),
+        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center top;
+      border-top: 2px solid var(--ink-moss);
+    }
+    
+    .skill-grid {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+    }
+
+    .timeline-dot { width: 8px; height: 8px; background: var(--ink-forest); border-radius: 50%; }
+    .timeline-rail { position: absolute; left: 3.5px; top: 0; bottom: 0; border-left: 1px dotted var(--ink-muted); }
+
+    section { padding-top: 96px; padding-bottom: 96px; }
+    
+    .text-shadow-hero {
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .filter-btn.active {
+      color: var(--ink-rust);
+      text-decoration: underline;
+      text-underline-offset: 8px;
+      text-decoration-thickness: 2px;
+      opacity: 1;
+    }
+
+    .project-card.hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="min-h-screen relative overflow-x-hidden">
+    
+    <!-- Dot Rail Nav -->
+    <nav class="dot-rail flex flex-col gap-6">
+      <a href="#hero" id="nav-start" class="group flex items-center justify-end">
+        <span class="opacity-0 group-hover:opacity-100 text-[10px] mr-3 font-inter tracking-widest uppercase transition-opacity">Start</span>
+        <div class="w-2 h-2 rounded-full border border-forest-ink bg-ink-forest transition-colors"></div>
+      </a>
+      <a href="#about" id="nav-bio" class="group flex items-center justify-end">
+        <span class="opacity-0 group-hover:opacity-100 text-[10px] mr-3 font-inter tracking-widest uppercase transition-opacity">Bio</span>
+        <div class="w-2 h-2 rounded-full border border-forest-ink"></div>
+      </a>
+      <a href="#projects" id="nav-work" class="group flex items-center justify-end">
+        <span class="opacity-0 group-hover:opacity-100 text-[10px] mr-3 font-inter tracking-widest uppercase transition-opacity">Work</span>
+        <div class="w-2 h-2 rounded-full border border-forest-ink"></div>
+      </a>
+      <a href="#contact" id="nav-reach" class="group flex items-center justify-end">
+        <span class="opacity-0 group-hover:opacity-100 text-[10px] mr-3 font-inter tracking-widest uppercase transition-opacity">Reach</span>
+        <div class="w-2 h-2 rounded-full border border-forest-ink"></div>
+      </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="h-[90vh] hero-frame relative flex flex-col justify-end px-24 pb-24">
+      <div class="max-w-5xl w-full">
+        <h1 class="font-vt323 text-[112px] leading-none mb-2 tracking-tight text-white text-shadow-hero">Ishan Makkar</h1>
+        <p class="text-xl font-vt323 tracking-wide text-white/90 mb-12 uppercase bg-black/20 inline-block px-3 py-1 backdrop-blur-sm">Software Engineer · Data Engineering · Frontend Developer</p>
+        
+        <div class="grid grid-cols-2 gap-16 mb-12 max-w-2xl">
+          <div class="hairline p-6 bg-black/10 backdrop-blur-sm border-white/20">
+            <span class="font-vt323 text-xs uppercase tracking-widest text-white/60 block mb-2">Field focus</span>
+            <span class="text-lg text-white font-medium">Systems &amp; Distributed Compute</span>
+          </div>
+          <div class="hairline p-6 bg-black/10 backdrop-blur-sm border-white/20">
+            <span class="font-vt323 text-xs uppercase tracking-widest text-white/60 block mb-2">Primary stack</span>
+            <span class="text-lg text-white font-medium">Java / PySpark / Next.js</span>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <a href="https://github.com/iishanmakkar/resume/blob/main/Ishan_Makkar_Resume%20(7).pdf" target="_blank" id="hero-resume-download" class="glass-btn px-6 font-vt323 text-sm flex items-center gap-2">
+            <iconify-icon icon="lucide:file-text"></iconify-icon> VIEW RESUME
+          </a>
+          <a href="https://github.com/iishanmakkar" target="_blank" id="hero-archive-btn" class="hairline border-white/30 px-6 h-[33px] font-vt323 text-sm text-white hover:bg-white hover:text-ink-forest transition-colors inline-flex items-center justify-center bg-black/20 backdrop-blur-sm">
+            GITHUB_PROFILE
+          </a>
+          <a href="https://github.com/iishanmakkar?tab=repositories" target="_blank" id="hero-oss-btn" class="hairline border-white/30 px-6 h-[33px] font-vt323 text-sm text-white hover:bg-white hover:text-ink-forest transition-colors inline-flex items-center justify-center bg-black/20 backdrop-blur-sm">
+            OPEN_SOURCE
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-[1024px] mx-auto px-6">
+      
+      <!-- About Section -->
+      <section id="about" class="border-b border-ink-muted/20">
+        <div class="flex flex-col gap-6">
+          <h2 class="font-vt323 text-[64px] mb-4">The Narrative</h2>
+          <div class="max-w-2xl space-y-6">
+            <p class="text-lg leading-relaxed">
+              I am a third-year B.E. Computer Science Engineering student (CGPA 9.47/10) focused on building batch and real-time data pipelines with Apache Kafka, Spark (PySpark), and SQL. From crafting performance-tuned desktop applications like <span class="text-ink-rust underline decoration-dotted underline-offset-4">WinBatterySaver</span> (Java/JavaFX) to designing large-scale data pipelines like <span class="text-ink-rust">RetailSync</span> (Kafka) and <span class="text-ink-rust">Olympic-data-engineering</span> (Azure Databricks/PySpark).
+            </p>
+            <p class="text-lg leading-relaxed">
+              My work spans from the low-level optimizations of Java systems to the expressive frontend architecture of Next.js apps. I've shipped live products like <span class="font-medium">BatteryIQ</span> and <span class="font-medium">dc-mcp</span> (Python MCP), alongside complex infrastructures like <span class="font-medium">zero-trust-aws-ci-cd</span> and the <span class="font-medium">notflix</span> MERN chat app, always prioritizing zero-trust security and maintainable code.
+            </p>
+            <a href="mailto:ishanmakkar651@gmail.com" id="about-email-link" class="inline-flex items-center gap-2 font-vt323 text-xl hover:text-ink-rust transition-colors">
+              <iconify-icon icon="lucide:mail"></iconify-icon> ishanmakkar651@gmail.com
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Table Section -->
+      <section id="skills" class="border-b border-ink-muted/20">
+        <h2 class="font-vt323 text-[64px] mb-12">Arsenal</h2>
+        <div class="flex flex-col">
+          <!-- Data Engineering -->
+          <div class="skill-grid border-t border-ink-muted/20 py-8">
+            <span class="font-vt323 text-2xl uppercase tracking-tighter">Data Eng</span>
+            <div class="flex flex-wrap gap-x-6 gap-y-3 opacity-80 font-inter text-sm uppercase">
+              <span>Apache Kafka</span> <span>Apache Spark/PySpark</span> <span>Hadoop</span> <span>HDFS</span> <span>Hive</span> <span>Big Data</span> <span>Apache Airflow</span> <span>ETL Pipeline Design</span> <span>Data Modeling</span> <span>Medallion Architecture</span> <span>Data Warehousing</span>
+            </div>
+          </div>
+          <!-- Cloud -->
+          <div class="skill-grid border-t border-ink-muted/20 py-8">
+            <span class="font-vt323 text-2xl uppercase tracking-tighter">Cloud</span>
+            <div class="flex flex-wrap gap-x-6 gap-y-3 opacity-80 font-inter text-sm uppercase">
+              <span>AWS S3/EC2/Lambda/Glue/Athena/IAM</span> <span>Azure Data Lake Storage Gen2/Databricks</span> <span>Snowflake</span>
+            </div>
+          </div>
+          <!-- Languages & DB -->
+          <div class="skill-grid border-t border-ink-muted/20 py-8">
+            <span class="font-vt323 text-2xl uppercase tracking-tighter">Logic/DB</span>
+            <div class="flex flex-wrap gap-x-6 gap-y-3 opacity-80 font-inter text-sm uppercase">
+              <span>Python (pandas)</span> <span>SQL</span> <span>Java</span> <span>C++</span> <span>JavaScript</span> <span>TypeScript</span> <span>MySQL</span> <span>MongoDB</span>
+            </div>
+          </div>
+          <!-- Web & DevOps -->
+          <div class="skill-grid border-t border-ink-muted/20 py-8">
+            <span class="font-vt323 text-2xl uppercase tracking-tighter">Web/DevOps</span>
+            <div class="flex flex-wrap gap-x-6 gap-y-3 opacity-80 font-inter text-sm uppercase">
+              <span>React</span> <span>Node.js</span> <span>Express</span> <span>RESTful APIs</span> <span>Docker</span> <span>Terraform</span> <span>CI/CD</span>
+            </div>
+          </div>
+          <!-- Fundamentals -->
+          <div class="skill-grid border-t border-ink-muted/20 py-8">
+            <span class="font-vt323 text-2xl uppercase tracking-tighter">Core CS</span>
+            <div class="flex flex-wrap gap-x-6 gap-y-3 opacity-80 font-inter text-sm uppercase">
+              <span>DSA</span> <span>OOP</span> <span>Design Patterns</span> <span>DBMS</span> <span>Operating Systems</span> <span>Computer Networks</span> <span>Linux</span> <span>SDLC</span> <span>Agile</span> <span>Microservices</span>
+            </div>
+          </div>
+          <!-- Tools -->
+          <div class="skill-grid border-y border-ink-muted/20 py-8">
+            <span class="font-vt323 text-2xl uppercase tracking-tighter">Tools</span>
+            <div class="flex flex-wrap gap-x-6 gap-y-3 opacity-80 font-inter text-sm uppercase">
+              <span>Git</span> <span>GitHub</span> <span>Power BI</span> <span>MCP</span> <span>Pytest</span> <span>Jest</span> <span>Unit Testing</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Showcase -->
+      <section id="certifications" class="border-b border-ink-muted/20">
+        <h2 class="font-vt323 text-[64px] mb-12">Certifications</h2>
+        <div class="flex flex-col gap-6">
+          <div class="flex flex-col md:flex-row justify-between border-t border-ink-muted/20 pt-6">
+            <span class="font-inter font-bold">Cisco Networking Academy</span>
+            <span class="font-vt323 text-xl opacity-70 uppercase tracking-widest">Cybersecurity</span>
+          </div>
+          <div class="flex flex-col md:flex-row justify-between border-t border-ink-muted/20 pt-6">
+            <span class="font-inter font-bold">Infosys Springboard</span>
+            <span class="font-vt323 text-xl opacity-70 uppercase tracking-widest">Explore Machine Learning using Python</span>
+          </div>
+          <div class="flex flex-col md:flex-row justify-between border-t border-ink-muted/20 pt-6">
+            <span class="font-inter font-bold">Infosys Springboard</span>
+            <span class="font-vt323 text-xl opacity-70 uppercase tracking-widest">Design Thinking</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="border-b border-ink-muted/20">
+        <div class="flex justify-between items-end mb-16">
+          <h2 class="font-vt323 text-[64px]">Deployments</h2>
+          <div class="flex gap-8 font-vt323 text-lg">
+            <button id="filter-all" class="filter-btn active">All</button>
+            <button id="filter-systems" class="filter-btn opacity-50 hover:opacity-100 transition-opacity">Systems</button>
+            <button id="filter-data" class="filter-btn opacity-50 hover:opacity-100 transition-opacity">Data</button>
+            <button id="filter-web" class="filter-btn opacity-50 hover:opacity-100 transition-opacity">Web</button>
+          </div>
+        </div>
+
+        <div id="projects-container" class="flex flex-col gap-32">
+          
+          <!-- WinBatterySaver -->
+          <div class="project-card grid grid-cols-12 gap-12 group" data-category="Systems">
+            <div class="col-span-7 bg-[#ECDFC2] h-[360px] relative overflow-hidden flex items-center justify-center border-ink-muted/10 border">
+              <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle,var(--ink-forest)_1px,transparent_1px)] [background-size:20px_20px]"></div>
+              <iconify-icon icon="lucide:battery-full" class="text-8xl opacity-20"></iconify-icon>
+              <div class="absolute bottom-4 right-4 bg-white/50 px-3 py-1 text-xs font-inter uppercase tracking-widest">System Tool</div>
+            </div>
+            <div class="col-span-5 flex flex-col">
+              <h3 class="font-vt323 text-4xl mb-2">WinBatterySaver</h3>
+              <p class="font-inter text-xs uppercase tracking-widest text-ink-rust mb-6 font-bold">Java / JavaFX / WinAPI</p>
+              <p class="mb-8 text-sm leading-relaxed opacity-80">
+                A high-performance Windows desktop application designed to maximize battery longevity through deep system-level optimizations and real-time state monitoring.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-8">
+                <span class="px-2 py-0.5 hairline text-[10px] font-inter uppercase tracking-wider">Desktop</span>
+                <span class="px-2 py-0.5 hairline text-[10px] font-inter uppercase tracking-wider">WinAPI</span>
+              </div>
+              <div class="flex gap-4 mt-auto">
+                <a href="https://github.com/iishanmakkar/WinBatterySaver/releases/latest" target="_blank" id="launch-winbatterysaver" class="keycap-launch px-8 font-vt323 text-lg">
+                  LAUNCH <iconify-icon icon="lucide:external-link" class="ml-2"></iconify-icon>
+                </a>
+                <a href="https://github.com/iishanmakkar/WinBatterySaver" target="_blank" id="source-winbatterysaver" class="keycap-source px-8 font-vt323 text-lg">
+                  SOURCE <iconify-icon icon="lucide:github" class="ml-2"></iconify-icon>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- BatteryIQ -->
+          <div class="project-card grid grid-cols-12 gap-12 group" data-category="Web">
+            <div class="col-span-7 order-2 bg-[#ECDFC2] h-[360px] relative overflow-hidden flex items-center justify-center border-ink-muted/10 border">
+               <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle,var(--ink-forest)_1px,transparent_1px)] [background-size:20px_20px]"></div>
+               <div class="text-center">
+                 <div class="font-vt323 text-6xl opacity-20 mb-2">98%</div>
+                 <div class="w-48 h-2 border border-ink-forest p-0.5">
+                    <div class="w-[98%] h-full bg-ink-forest"></div>
+                 </div>
+               </div>
+            </div>
+            <div class="col-span-5 flex flex-col">
+              <h3 class="font-vt323 text-4xl mb-2">BatteryIQ</h3>
+              <p class="font-inter text-xs uppercase tracking-widest text-ink-rust mb-6 font-bold">Next.js / TypeScript / Recharts</p>
+              <p class="mb-8 text-sm leading-relaxed opacity-80">
+                Advanced web analytics for device battery health telemetry. Providing deep insights into discharge cycles and longevity forecasting.
+              </p>
+              <div class="flex gap-4 mt-auto">
+                <a href="https://batterylife.vercel.app" target="_blank" id="link-battery-iq" class="keycap-launch px-8 font-vt323 text-lg">
+                  LAUNCH <iconify-icon icon="lucide:external-link" class="ml-2"></iconify-icon>
+                </a>
+                <a href="https://github.com/iishanmakkar/batterylife" target="_blank" id="source-battery-iq" class="keycap-source px-8 font-vt323 text-lg">
+                  SOURCE <iconify-icon icon="lucide:github" class="ml-2"></iconify-icon>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- dc-mcp -->
+          <div class="project-card grid grid-cols-12 gap-12 group" data-category="Data">
+            <div class="col-span-7 bg-[#ECDFC2] h-[360px] relative overflow-hidden flex items-center justify-center border-ink-muted/10 border">
+              <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle,var(--ink-forest)_1px,transparent_1px)] [background-size:20px_20px]"></div>
+              <iconify-icon icon="lucide:terminal" class="text-8xl opacity-20"></iconify-icon>
+            </div>
+            <div class="col-span-5 flex flex-col">
+              <h3 class="font-vt323 text-4xl mb-2">dc-mcp</h3>
+              <p class="font-inter text-xs uppercase tracking-widest text-ink-rust mb-6 font-bold">Python / Data Cleaning / MCP</p>
+              <p class="mb-8 text-sm leading-relaxed opacity-80">
+                Model Context Protocol implementation for automated data cleaning. Streamlining the ETL pre-processing phase with intelligent schema mapping.
+              </p>
+              <div class="flex gap-4 mt-auto">
+                <a href="https://dc-mcp-self.vercel.app" target="_blank" id="link-dc-mcp" class="keycap-launch px-8 font-vt323 text-lg">
+                  LAUNCH <iconify-icon icon="lucide:external-link" class="ml-2"></iconify-icon>
+                </a>
+                <a href="https://github.com/iishanmakkar/dc-mcp" target="_blank" id="source-dc-mcp" class="keycap-source px-8 font-vt323 text-lg">
+                  SOURCE <iconify-icon icon="lucide:github" class="ml-2"></iconify-icon>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- RetailSync -->
+          <div class="project-card grid grid-cols-12 gap-12 group" data-category="Data">
+            <div class="col-span-7 order-2 bg-[#ECDFC2] h-[360px] relative overflow-hidden flex items-center justify-center border-ink-muted/10 border">
+              <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle,var(--ink-forest)_1px,transparent_1px)] [background-size:20px_20px]"></div>
+              <iconify-icon icon="lucide:shopping-cart" class="text-8xl opacity-20"></iconify-icon>
+            </div>
+            <div class="col-span-5 flex flex-col">
+              <h3 class="font-vt323 text-4xl mb-2">RetailSync</h3>
+              <p class="font-inter text-xs uppercase tracking-widest text-ink-rust mb-6 font-bold">Java / SQL / Kafka</p>
+              <p class="mb-8 text-sm leading-relaxed opacity-80">
+                Enterprise-scale inventory synchronization engine. Leveraging Kafka for real-time stock updates across distributed retail nodes.
+              </p>
+              <div class="flex gap-4 mt-auto">
+                <a href="https://github.com/iishanmakkar/RetailSync" target="_blank" id="launch-retailsync" class="keycap-launch px-8 font-vt323 text-lg">
+                  REPO <iconify-icon icon="lucide:github" class="ml-2"></iconify-icon>
+                </a>
+                <a href="https://github.com/iishanmakkar/RetailSync" target="_blank" id="source-retailsync" class="keycap-source px-8 font-vt323 text-lg">
+                  SOURCE <iconify-icon icon="lucide:github" class="ml-2"></iconify-icon>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Olympic Data Engineering -->
+          <div class="project-card grid grid-cols-12 gap-12 group" data-category="Data">
+            <div class="col-span-7 bg-[#ECDFC2] h-[360px] relative overflow-hidden flex items-center justify-center border-ink-muted/10 border">
+              <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle,var(--ink-forest)_1px,transparent_1px)] [background-size:20px_20px]"></div>
+              <iconify-icon icon="lucide:bar-chart-3" class="text-8xl opacity-20"></iconify-icon>
+            </div>
+            <div class="col-span-5 flex flex-col">
+              <h3 class="font-vt323 text-4xl mb-2">Olympic Analytics</h3>
+              <p class="font-inter text-xs uppercase tracking-widest text-ink-rust mb-6 font-bold">PySpark / Azure / Databricks</p>
+              <p class="mb-8 text-sm leading-relaxed opacity-80">
+                End-to-end data pipeline processing historical Olympic data. Utilizing Azure Data Factory and Databricks for multi-stage ETL and reporting.
+              </p>
+              <div class="flex gap-4 mt-auto">
+                <a href="https://github.com/iishanmakkar/Olympic-data-engineering" target="_blank" id="launch-olympic" class="keycap-launch px-8 font-vt323 text-lg">
+                  REPO <iconify-icon icon="lucide:github" class="ml-2"></iconify-icon>
+                </a>
+                <a href="https://github.com/iishanmakkar/Olympic-data-engineering" target="_blank" id="source-olympic" class="keycap-source px-8 font-vt323 text-lg">
+                  SOURCE <iconify-icon icon="lucide:github" class="ml-2"></iconify-icon>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- zero-trust-aws-ci-cd -->
+          <div class="project-card grid grid-cols-12 gap-12 group" data-category="Systems">
+            <div class="col-span-7 order-2 bg-[#ECDFC2] h-[360px] relative overflow-hidden flex items-center justify-center border-ink-muted/10 border">
+              <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle,var(--ink-forest)_1px,transparent_1px)] [background-size:20px_20px]"></div>
+              <iconify-icon icon="lucide:shield-check" class="text-8xl opacity-20"></iconify-icon>
+            </div>
+            <div class="col-span-5 flex flex-col">
+              <h3 class="font-vt323 text-4xl mb-2">ZeroTrust CI/CD</h3>
+              <p class="font-inter text-xs uppercase tracking-widest text-ink-rust mb-6 font-bold">AWS / Terraform / OIDC</p>
+              <p class="mb-8 text-sm leading-relaxed opacity-80">
+                Secure cloud infrastructure deployment pipeline. Eliminating long-lived credentials via GitHub OIDC and granular IAM policies.
+              </p>
+              <div class="flex gap-4 mt-auto">
+                <a href="https://github.com/iishanmakkar/zero-trust-aws-ci-cd" target="_blank" id="launch-zerotrust" class="keycap-launch px-8 font-vt323 text-lg">
+                  REPO <iconify-icon icon="lucide:github" class="ml-2"></iconify-icon>
+                </a>
+                <a href="https://github.com/iishanmakkar/zero-trust-aws-ci-cd" target="_blank" id="source-zerotrust" class="keycap-source px-8 font-vt323 text-lg">
+                  SOURCE <iconify-icon icon="lucide:github" class="ml-2"></iconify-icon>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notflix -->
+          <div class="project-card grid grid-cols-12 gap-12 group" data-category="Web">
+            <div class="col-span-7 bg-[#ECDFC2] h-[360px] relative overflow-hidden flex items-center justify-center border-ink-muted/10 border">
+              <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle,var(--ink-forest)_1px,transparent_1px)] [background-size:20px_20px]"></div>
+              <iconify-icon icon="lucide:play-circle" class="text-8xl opacity-20"></iconify-icon>
+            </div>
+            <div class="col-span-5 flex flex-col">
+              <h3 class="font-vt323 text-4xl mb-2">notflix</h3>
+              <p class="font-inter text-xs uppercase tracking-widest text-ink-rust mb-6 font-bold">MongoDB / Express / React / Node.js</p>
+              <p class="mb-8 text-sm leading-relaxed opacity-80">
+                Real-time MERN chat application featuring dynamic message delivery, user presence states, and responsive layout.
+              </p>
+              <div class="flex gap-4 mt-auto">
+                <a href="https://github.com/iishanmakkar/notflix" target="_blank" id="launch-notflix" class="keycap-launch px-8 font-vt323 text-lg">
+                  LAUNCH <iconify-icon icon="lucide:external-link" class="ml-2"></iconify-icon>
+                </a>
+                <a href="https://github.com/iishanmakkar/notflix" target="_blank" id="source-notflix" class="keycap-source px-8 font-vt323 text-lg">
+                  SOURCE <iconify-icon icon="lucide:github" class="ml-2"></iconify-icon>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Career Timeline -->
+      <section id="timeline" class="border-b border-ink-muted/20">
+        <h2 class="font-vt323 text-[64px] mb-16">Chronology</h2>
+        <div class="relative pl-12">
+          <div class="timeline-rail"></div>
+          
+          <div class="relative">
+            <div class="timeline-dot absolute -left-[12.5px] top-2"></div>
+            <span class="font-vt323 text-lg text-ink-rust">2024 — EXPECTED 2028</span>
+            <h4 class="text-xl font-bold mt-1">Chitkara University</h4>
+            <p class="font-vt323 text-2xl text-ink-forest">B.E. Computer Science and Engineering</p>
+            <p class="mt-2 text-sm opacity-80 font-bold uppercase tracking-widest">Current CGPA: 9.47 / 10</p>
+            <p class="mt-4 text-xs font-inter opacity-60 uppercase tracking-wider">
+              Relevant Coursework: Data Structures & Algorithms, DBMS, Operating Systems, Computer Networks, OOP, Linux
+            </p>
+          </div>
+        </div>
+      </section>
+
+      
+
+    </main>
+
+    <!-- Footer Frame -->
+    <footer id="contact" class="footer-frame pt-32 pb-16 relative">
+      <div class="max-w-5xl mx-auto px-6 text-center">
+        <div class="bg-[#FDF9F0]/80 backdrop-blur-md inline-block p-12 border border-ink-moss/30 shadow-2xl rounded-sm">
+          <h2 class="font-vt323 text-[82px] mb-4">Establish Contact</h2>
+          <p class="max-w-xl mx-auto mb-12 opacity-80">
+            Based in Haryana, India. Currently available for collaboration on data infrastructure projects and specialized software engineering roles.
+          </p>
+          
+          <a href="mailto:ishanmakkar651@gmail.com" id="footer-cta" class="inline-block border-2 border-ink-forest px-12 py-4 font-vt323 text-2xl bg-accent-lime/20 hover:bg-accent-lime hover:text-ink-forest transition-all mb-16">
+            SAY HELLO_WORLD
+          </a>
+
+          <div class="flex justify-center items-center gap-12 border-y border-ink-muted/10 py-8 mb-12">
+            <a href="mailto:ishanmakkar651@gmail.com" id="social-email" class="flex items-center gap-2 hover:text-ink-rust transition-colors">
+              <iconify-icon icon="lucide:mail"></iconify-icon>
+              <span class="text-xs font-vt323 uppercase tracking-widest">Email</span>
+            </a>
+            <a href="https://github.com/iishanmakkar" target="_blank" id="social-github" class="flex items-center gap-2 hover:text-ink-rust transition-colors">
+              <iconify-icon icon="lucide:github"></iconify-icon>
+              <span class="text-xs font-vt323 uppercase tracking-widest">GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/iishanmakkar" target="_blank" id="social-linkedin" class="flex items-center gap-2 hover:text-ink-rust transition-colors">
+              <iconify-icon icon="lucide:linkedin"></iconify-icon>
+              <span class="text-xs font-vt323 uppercase tracking-widest">LinkedIn</span>
+            </a>
+            <a href="https://leetcode.com/u/s4oEHfbEwb/" target="_blank" id="social-leetcode" class="flex items-center gap-2 hover:text-ink-rust transition-colors">
+              <iconify-icon icon="simple-icons:leetcode"></iconify-icon>
+              <span class="text-xs font-vt323 uppercase tracking-widest">LeetCode</span>
+            </a>
+          </div>
+
+          
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Dot rail active state
+    const sections = document.querySelectorAll('section, header, footer');
+    const dots = document.querySelectorAll('.dot-rail a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (window.scrollY >= sectionTop - 250) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      dots.forEach(dot => {
+        const dotDiv = dot.querySelector('div');
+        dotDiv.classList.remove('bg-ink-forest');
+        if (dot.getAttribute('href').slice(1) === current) {
+          dotDiv.classList.add('bg-ink-forest');
+        }
+      });
+    });
+
+    // Project Filtering Logic
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filter = button.id.split('-')[1]; // 'all', 'systems', 'data', 'web'
+        
+        // Update UI active state
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active');
+          btn.classList.add('opacity-50');
+        });
+        button.classList.add('active');
+        button.classList.remove('opacity-50');
+
+        // Filter cards
+        projectCards.forEach(card => {
+          const category = card.getAttribute('data-category').toLowerCase();
+          if (filter === 'all' || category === filter) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        // Smooth scroll to top of projects section after filtering
+        document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+
+</body>
+</html>
